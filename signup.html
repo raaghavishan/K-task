@@ -1,0 +1,94 @@
+<html>
+<head>
+    <title> Signup</title>
+    <style>
+    body{
+      background-image:url("back1.jpg");
+      font-size: 30px;
+      text-align:center;
+      font-family: fantasy;
+      border-style: groove;
+      text-shadow:#949494;
+    }
+    h1{
+      font-family: fantasy;
+      color:#949494;
+      border-style:ridge;
+      text-shadow: 3px 2px black;
+    }
+    div {
+    width: 300px;
+    border: 10px solid #949494;
+    padding: 25px;
+    margin: 25px;
+}
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #949494;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: ##323232}
+
+.button:active {
+  background-color: ##323232;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);}
+
+</style>
+
+</head>
+<body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+    <script  type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+
+    <script type="text/javascript">
+
+    var app = angular.module('MyApp', ["ngStorage"])
+    app.controller('MyController', function ($scope, $localStorage,$window) {
+        $scope.Save = function () {
+          if(document.getElementById('name').value=="" || document.getElementById('pass').value=="" || document.getElementById('c_pass').value=="")
+          {
+            $window.alert("Please fill out all the details");
+          }
+          else {
+            if(document.getElementById('pass').value == document.getElementById('c_pass').value)
+            {
+            $localStorage.username = document.getElementById('name').value;
+            $localStorage.password = document.getElementById('pass').value;
+            $window.alert("Your account saved to local storage successfully");
+          }
+          else {
+            $window.alert("The passwords doesn't match");
+          }
+        }
+          }
+
+
+
+    });
+    </script>
+    <h1>Signup yourself</h1>
+        <form action="signin.html">
+          <center>
+    <div ng-app="MyApp" ng-controller="MyController">
+        Enter your Username:<input type="text" id="name" value=""><br>
+        Enter your password:<input type="password" id="pass" value="" maxlength="20"><br>
+        Conform your password:<input type="password" id="c_pass" value="" maxlength="20"><br><br>
+
+          <input type="button" value = "Signup" ng-click = "Save()" class="button" /><br><br>
+        If an existing user just signin....<input type="submit" value = "Signin" class="button"   />
+
+    </div>
+  </center>
+  </form>
+
+</body>
+</html>
